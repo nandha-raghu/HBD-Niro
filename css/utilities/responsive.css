@@ -1,0 +1,111 @@
+@media (min-width: 1441px) {
+    :root {
+        --fs-display: 7.5rem;
+        --fs-xxl: 4.5rem;
+    }
+    
+    .container {
+        max-width: 1400px;
+    }
+}
+
+@media (max-width: 1440px) {
+    :root {
+        --space-xl: 6rem;
+        --space-xxl: 9rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --space-lg: 3rem;
+        --space-xl: 5rem;
+        --space-xxl: 7rem;
+        --glass-blur: 16px;
+    }
+
+    .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    .grid {
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 4rem;
+        --space-xxl: 5.5rem;
+        
+        --fs-display: 4.5rem;
+        --fs-xxl: 2.8rem;
+        --fs-xl: 2rem;
+        --fs-lg: 1.35rem;
+        --fs-md: 1.15rem;
+        --fs-base: 0.95rem;
+        --fs-sm: 0.85rem;
+        --fs-xs: 0.75rem;
+    }
+
+    .audio-widget-container {
+        bottom: var(--space-sm);
+        left: var(--space-sm);
+    }
+    
+    .audio-btn {
+        padding: 0.5rem 0.9rem;
+        font-size: 9px;
+    }
+    
+    .loader-content {
+        max-width: 100%;
+    }
+    
+    .loader-heart-wrapper {
+        width: 80px;
+        height: 72px;
+        margin-bottom: var(--space-md);
+    }
+    
+    .loader-title {
+        margin-bottom: var(--space-sm);
+    }
+
+    .hero-brand-top {
+        margin-top: var(--space-sm);
+    }
+    
+    .hero-heart-destination {
+        width: 60px;
+        height: 54px;
+        margin: var(--space-sm) auto;
+    }
+    
+    .noise-overlay {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --space-xs: 0.4rem;
+        --space-sm: 0.8rem;
+        --space-md: 1.2rem;
+        
+        --fs-display: 3.5rem;
+        --fs-xxl: 2.25rem;
+        --fs-xl: 1.75rem;
+    }
+    
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 11px;
+    }
+
+    .hero-container {
+        padding-top: var(--space-lg);
+    }
+}

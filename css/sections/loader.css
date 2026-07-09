@@ -1,0 +1,132 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-bg);
+    z-index: var(--z-loader);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 1.2s var(--ease-in-out-expo), visibility 1.2s var(--ease-in-out-expo);
+    will-change: opacity, visibility;
+}
+
+.loader-overlay.is-loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 var(--space-md);
+    z-index: 10;
+}
+
+
+
+.interactive-heart {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-origin: center;
+    filter: drop-shadow(0 0 20px rgba(var(--color-rose-gold-rgb), 0.4));
+    will-change: transform;
+}
+
+.loader-heart-wrapper.is-beating {
+    animation: cinematicHeartbeat 1.4s var(--ease-heartbeat) infinite;
+}
+
+@keyframes cinematicHeartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1.05); }
+    42% { transform: scale(1.25); }
+    70% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+.loader-text-sequence {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-message {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo), visibility 1s var(--ease-out-expo);
+    will-change: transform, opacity;
+}
+
+.loader-message.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.loader-message .sub-label {
+    display: block;
+    font-size: var(--fs-xs);
+    letter-spacing: var(--letter-spacing-extra-wide);
+    color: var(--color-gold);
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
+}
+
+.loader-title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-light);
+    color: var(--color-white);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.05em;
+}
+
+.gold-progress-line {
+    position: relative;
+    width: 180px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.08);
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--grad-gold-rose);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.1s linear;
+    will-change: transform;
+}
+/* --- PREMIUM SCALE UP: Climax Story text --- */
+.loader-message .heartfelt-prose {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem) !important;
+    font-weight: 300 !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.03em !important;
+    color: var(--color-white) !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}

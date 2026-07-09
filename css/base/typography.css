@@ -1,0 +1,112 @@
+.font-serif {
+    font-family: var(--font-heading);
+}
+
+.font-sans {
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-white);
+    letter-spacing: var(--letter-spacing-normal);
+}
+
+h1 {
+    font-size: clamp(var(--fs-xxl), 8vw, var(--fs-display));
+    font-weight: var(--fw-light);
+}
+
+h2 {
+    font-size: clamp(var(--fs-xl), 5vw, var(--fs-xxl));
+    font-weight: var(--fw-light);
+}
+
+h3 {
+    font-size: clamp(var(--fs-lg), 3vw, var(--fs-xl));
+    font-weight: var(--fw-light);
+}
+
+p {
+    font-family: var(--font-body);
+    font-size: clamp(var(--fs-sm), 1.25vw, var(--fs-base));
+    font-weight: var(--fw-light);
+    color: var(--color-muted);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+.section-badge {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    color: var(--color-gold);
+    letter-spacing: var(--letter-spacing-extra-wide);
+    margin-bottom: var(--space-sm);
+}
+
+.text-muted {
+    color: var(--color-muted);
+}
+
+.cinematic-prose {
+    font-size: clamp(var(--fs-md), 2.5vw, var(--fs-lg));
+    font-weight: var(--fw-light);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-white);
+    letter-spacing: 0.01em;
+}
+
+.luxury-quote {
+    position: relative;
+    font-size: clamp(var(--fs-md), 1.8vw, var(--fs-lg));
+    font-weight: var(--fw-light);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-gold);
+    padding-left: var(--space-md);
+    margin: var(--space-md) 0;
+    border-left: 1px solid var(--color-gold);
+}
+
+.text-gradient-shimmer {
+    background: var(--grad-gold-rose);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    animation: shimmerGlow 6s linear infinite alternate;
+}
+
+@keyframes shimmerGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.split-text {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.split-text.js-split-initialized {
+    opacity: 1;
+    visibility: visible;
+}
+
+.split-line {
+    overflow: hidden;
+    display: block;
+}
+
+.split-word {
+    display: inline-block;
+}
+
+.split-char {
+    display: inline-block;
+    will-change: transform, opacity;
+}

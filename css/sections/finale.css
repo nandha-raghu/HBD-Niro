@@ -1,0 +1,126 @@
+.finale-viewport {
+    position: relative;
+    background: radial-gradient(circle at 50% 115%, rgba(var(--color-gold-rgb), 0.14) 0%, rgba(var(--color-rose-gold-rgb), 0.08) 35%, rgba(10, 15, 36, 0.18) 65%, var(--color-bg) 100%);
+    min-height: 100vh;
+    padding: var(--space-xxl) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Giant waving cosmic aurora rise */
+.finale-viewport::before {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -15%;
+    width: 130%;
+    height: 450px;
+    background: radial-gradient(ellipse at bottom, rgba(var(--color-gold-rgb), 0.07) 0%, rgba(var(--color-rose-gold-rgb), 0.035) 45%, transparent 75%);
+    filter: blur(65px);
+    transform-origin: bottom center;
+    animation: auroraWaveAnimation 12s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes auroraWaveAnimation {
+    0% { transform: scaleY(0.85) rotate(-1.5deg); opacity: 0.65; }
+    100% { transform: scaleY(1.15) rotate(1.5deg); opacity: 0.95; }
+}
+
+.finale-glow {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.9;
+    background: radial-gradient(circle at center, rgba(var(--color-rose-gold-rgb), 0.08) 0%, rgba(var(--color-bg-rgb), 0) 70%);
+}
+
+.finale-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    z-index: 10;
+}
+
+.finale-heart-display {
+    position: relative;
+    width: 140px;
+    height: 126px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+}
+
+.glowing-heart-svg {
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    filter: drop-shadow(0 0 35px rgba(var(--color-gold-rgb), 0.6)) drop-shadow(0 0 10px rgba(var(--color-rose-gold-rgb), 0.3));
+    animation: slowCinematicPulse 4s var(--ease-heartbeat) infinite alternate;
+}
+
+@keyframes slowCinematicPulse {
+    0% {
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 25px rgba(var(--color-gold-rgb), 0.45));
+    }
+    100% {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 45px rgba(var(--color-rose-gold-rgb), 0.7));
+    }
+}
+
+.finale-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    max-width: 620px;
+    padding: 0 var(--space-md);
+}
+
+.finale-headline {
+    font-size: clamp(var(--fs-xl), 5vw, var(--fs-xxl));
+    font-weight: var(--fw-light);
+    line-height: 1.2;
+    color: var(--color-white);
+}
+
+/* Force text-clip directly on the closing split spans */
+.finale-headline .split-char,
+.finale-headline .char {
+    background: var(--grad-gold-rose);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    display: inline-block;
+}
+
+.finale-prose {
+    font-size: clamp(var(--fs-sm), 1.5vw, var(--fs-base));
+    max-width: 500px;
+}
+
+.finale-signature {
+    display: block;
+    font-size: clamp(var(--fs-md), 2.5vw, var(--fs-lg));
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--color-gold);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(var(--color-gold-rgb), 0.25);
+    margin-top: var(--space-xs);
+}
+
+.finale-actions {
+    margin-top: var(--space-md);
+}

@@ -1,0 +1,83 @@
+.timeline-card {
+    position: relative;
+    width: 100%;
+    padding: var(--space-md);
+    border-radius: 0;
+    transition: transform 0.8s var(--ease-out-expo), border-color 0.8s var(--ease-out-expo), box-shadow 0.8s var(--ease-out-expo);
+    will-change: transform;
+}
+
+.timeline-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--color-gold-rgb), 0.25);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+}
+
+.card-year {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-light);
+    color: var(--color-gold);
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--space-xs);
+    line-height: 1.2;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-medium);
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0.05em;
+}
+
+.card-desc {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+.card-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: var(--color-bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.0);
+    transition: transform 1.2s var(--ease-out-expo);
+    will-change: transform;
+}
+
+.card-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.4) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.timeline-card:hover .card-media img {
+    transform: scale(1.06);
+}
+
+.lazy-image {
+    opacity: 0;
+    transition: opacity 0.8s var(--ease-out-expo);
+    will-change: opacity;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+}

@@ -1,0 +1,263 @@
+.hero-viewport {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 30%, #080f26 0%, var(--color-bg) 85%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(var(--color-gold-rgb), 0.14) 0%, rgba(var(--color-rose-gold-rgb), 0.04) 40%, transparent 70%);
+    transform: translate(-50%, -50%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: var(--z-ambient);
+    opacity: 0.85;
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+.hero-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-md);
+    text-align: center;
+    z-index: 10;
+}
+
+.hero-brand-top {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1.5s var(--ease-out-expo), transform 1.5s var(--ease-out-expo);
+    will-change: transform, opacity;
+}
+
+.hero-brand-top.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.brand-line {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    color: var(--color-gold);
+    letter-spacing: var(--letter-spacing-extra-wide);
+    text-transform: uppercase;
+}
+
+.hero-heart-destination {
+    position: relative;
+    width: 80px;
+    height: 72px;
+    margin: var(--space-md) auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Maintain high depth while floating */
+    will-change: transform, opacity;
+}
+
+.hero-heart-destination.is-loader-state {
+    z-index: 99999; /* Sit on top of preloader background */
+}
+
+/* Center-locked heartbeat pulse used during preloading */
+.hero-heart-destination.is-beating {
+    animation: cinematicHeartbeat 1.4s var(--ease-heartbeat) infinite;
+}
+
+@keyframes cinematicHeartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1.05); }
+    42% { transform: scale(1.25); }
+    70% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+.interactive-heart-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.interactive-heart {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-origin: center;
+    filter: drop-shadow(0 0 20px rgba(var(--color-rose-gold-rgb), 0.4));
+}
+
+
+
+
+
+@keyframes floatingAmbientHeart {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.hero-typography {
+    margin: var(--space-sm) 0;
+    pointer-events: none;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.hero-title .line-small {
+    font-size: clamp(var(--fs-xs), 2vw, var(--fs-sm));
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    color: var(--color-muted);
+    letter-spacing: var(--letter-spacing-extra-wide);
+    line-height: 1;
+}
+
+.hero-title .line-large {
+    font-size: clamp(var(--fs-xxl), 10vw, var(--fs-display));
+    font-weight: var(--fw-light);
+    color: var(--color-white);
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+}
+
+/* Force text-clip directly on the split-char spans to prevent transparent rendering bugs */
+.hero-title .line-large .split-char,
+.hero-title .line-large .char {
+    background: var(--grad-gold-rose);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-cta-group {
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+}
+
+.hero-cta-group.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    opacity: 0;
+    transition: opacity 1.5s var(--ease-out-expo) 1s;
+    will-change: opacity;
+}
+
+.scroll-indicator.is-visible {
+    opacity: 0.6;
+}
+
+.mouse-icon {
+    width: 20px;
+    height: 32px;
+    border: 1px solid var(--color-muted);
+    border-radius: 12px;
+    position: relative;
+}
+
+.mouse-icon .wheel {
+    width: 2px;
+    height: 6px;
+    background-color: var(--color-gold);
+    border-radius: 1px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheelWheel 1.6s ease-in-out infinite;
+}
+
+@keyframes scrollWheelWheel {
+    0% { top: 6px; opacity: 1; }
+    100% { top: 18px; opacity: 0; }
+}
+
+.scroll-text {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+/* --- SHORT SCREEN PORTABILITY TUNING --- */
+@media (max-height: 750px) {
+    .hero-container {
+        justify-content: center !important;
+        gap: var(--space-sm) !important;
+        padding-top: var(--space-lg) !important;
+        padding-bottom: var(--space-xs) !important;
+    }
+    
+    .hero-heart-destination {
+    position: relative;
+    width: 80px;
+    height: 72px;
+    margin: var(--space-md) auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Maintain high depth while floating */
+    will-change: transform, opacity;
+}
+
+.hero-heart-destination.is-loader-state {
+    z-index: 99999; /* Sit on top of preloader background */
+}
+
+/* Center-locked heartbeat pulse used during preloading */
+.hero-heart-destination.is-beating {
+    animation: cinematicHeartbeat 1.4s var(--ease-heartbeat) infinite;
+}
+
+@keyframes cinematicHeartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1.05); }
+    42% { transform: scale(1.25); }
+    70% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+.interactive-heart-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.interactive-heart {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-origin: center;
+    filter: drop-shadow(0 0 20px rgba(var(--color-rose-gold-rgb), 0.4));
+}
+
+
+}

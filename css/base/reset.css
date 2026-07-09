@@ -1,0 +1,118 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    scroll-behavior: auto !important;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    color: var(--color-white);
+    background-color: var(--color-bg);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-regular);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: inherit;
+    line-height: 1.1;
+}
+
+p, li, blockquote {
+    overflow-wrap: break-word;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+button,
+a,
+input {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+button,
+a {
+    cursor: pointer;
+    text-decoration: none;
+    transition: color var(--ease-smooth-hover), opacity var(--ease-smooth-hover);
+}
+
+button,
+.btn,
+.brand-line,
+.section-badge {
+    user-select: none;
+}
+
+button,
+a,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+canvas {
+    display: block;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+html.lenis {
+    height: auto;
+}
+
+.lenis-clean-scroll {
+    scrollbar-width: none;
+}
+
+.lenis-clean-scroll::-webkit-scrollbar {
+    display: none;
+}

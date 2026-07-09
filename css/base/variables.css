@@ -1,0 +1,72 @@
+:root {
+    --color-bg: #050505;
+    --color-bg-secondary: #101010;
+    --color-gold: #D4AF37;
+    --color-rose-gold: #FF5F8A;
+    --color-white: #FFFFFF;
+    --color-muted: #8E8E8E;
+
+    --color-bg-rgb: 5, 5, 5;
+    --color-bg-secondary-rgb: 16, 16, 16;
+    --color-gold-rgb: 212, 175, 55;
+    --color-rose-gold-rgb: 255, 95, 138;
+    --color-white-rgb: 255, 255, 255;
+    --color-muted-rgb: 142, 142, 142;
+
+    --grad-gold-rose: linear-gradient(135deg, var(--color-rose-gold) 0%, var(--color-gold) 50%, var(--color-rose-gold) 100%);
+    --grad-gold-shimmer: linear-gradient(90deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(212, 175, 55, 0.1) 100%);
+    --grad-dark-overlay: linear-gradient(180deg, rgba(var(--color-bg-rgb), 0) 0%, rgba(var(--color-bg-rgb), 0.95) 100%);
+    --grad-radial-ambient: radial-gradient(circle at center, rgba(var(--color-gold-rgb), 0.08) 0%, rgba(var(--color-bg-rgb), 0) 70%);
+
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Poppins', sans-serif;
+
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-md: 1.25rem;
+    --fs-lg: 1.5rem;
+    --fs-xl: 2.25rem;
+    --fs-xxl: 3.5rem;
+    --fs-display: 6rem;
+
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+
+    --letter-spacing-wide: 0.2em;
+    --letter-spacing-extra-wide: 0.35em;
+    --letter-spacing-normal: 0.05em;
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+    --ease-heartbeat: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ease-smooth-hover: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --space-xxs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+    --space-xxl: 12rem;
+
+    --glass-blur: 24px;
+    --glass-border: rgba(255, 255, 255, 0.03);
+    --glass-bg: rgba(16, 16, 16, 0.55);
+    --glass-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+    --glass-highlight: rgba(212, 175, 55, 0.1);
+
+    --z-noise: 10000;
+    --z-cursor: 9999;
+    --z-lightbox: 9900;
+    --z-loader: 9500;
+    --z-audio: 9000;
+    --z-header: 500;
+    --z-content: 10;
+    --z-ambient: 1;
+
+    --will-change-transform: transform;
+    --will-change-opacity: opacity;
+}
