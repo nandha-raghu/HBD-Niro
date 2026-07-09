@@ -6,6 +6,35 @@ import { getPointerPosition } from './events.js';
 let lenisInstance = null;
 const cursorInterp = { dotX: 0, dotY: 0, ringX: 0, ringY: 0 };
 
+function spawnStardustSparkle(x, y) {
+    if (Math.random() > 0.3) return;
+
+    const sparkle = document.createElement('div');
+    sparkle.style.position = 'fixed';
+    sparkle.style.left = `${x}px`;
+    sparkle.style.top = `${y}px`;
+    sparkle.style.width = '4px';
+    sparkle.style.height = '4px';
+    sparkle.style.borderRadius = '50%';
+    sparkle.style.pointerEvents = 'none';
+    sparkle.style.zIndex = '999999';
+    
+    const colors = ['#D4AF37', '#FF5F8A', '#FFF', '#FF8EA4'];
+    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    
+    document.body.appendChild(sparkle);
+
+    gsap.to(sparkle, {
+        x: 'random(-15, 15)',
+        y: 'random(-10, 25)',
+        opacity: 0,
+        scale: 0.1,
+        duration: gsap.utils.random(0.6, 1.2),
+        ease: "power2.out",
+        onComplete: () => sparkle.remove()
+    });
+}
+
 function initSmoothScroll() {
     lenisInstance = new Lenis({
         duration: 1.4,
@@ -35,39 +64,6 @@ function initSmoothScroll() {
     });
 }
 
-// Spawns clean, GPU-accelerated gold stardust trailing behind the cursor
-function spawnStardustSparkle(x, y) {
-    // Throttle spawning rate to maintain 60 FPS performance
-    if (Math.random() > 0.3) return;
-
-    const sparkle = document.createElement('div');
-    sparkle.style.position = 'fixed';
-    sparkle.style.left = `${x}px`;
-    sparkle.style.top = `${y}px`;
-    sparkle.style.width = '4px';
-    sparkle.style.height = '4px';
-    sparkle.style.borderRadius = '50%';
-    sparkle.style.pointerEvents = 'none';
-    sparkle.style.zIndex = '999999';
-    
-    // Mix warm gold and rose gold sparks
-    const colors = ['#D4AF37', '#FF5F8A', '#FFF', '#FF8EA4'];
-    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    document.body.appendChild(sparkle);
-
-    // Dynamic drifting vectors
-    gsap.to(sparkle, {
-        x: 'random(-15, 15)',
-        y: 'random(-10, 25)', // Fall slightly due to gravity
-        opacity: 0,
-        scale: 0.1,
-        duration: gsap.utils.random(0.6, 1.2),
-        ease: "power2.out",
-        onComplete: () => sparkle.remove()
-    });
-}
-
 function updateCustomCursorTick() {
     const coords = getPointerPosition();
 
@@ -81,7 +77,8 @@ function updateCustomCursorTick() {
         const ringElement = DOM.customCursor.querySelector('.cursor-ring');
 
         if (dotElement) {
-            dotElement.style.transform = `translate3d(${cursorInterp.dotX}px, ${cursorInterp.dotY}px, 0)`;\n        spawnStardustSparkle(cursorInterp.dotX, cursorInterp.dotY);
+            dotElement.style.transform = `translate3d(${cursorInterp.dotX}px, ${cursorInterp.dotY}px, 0)`;
+            spawnStardustSparkle(cursorInterp.dotX, cursorInterp.dotY);
         }
         if (ringElement) {
             ringElement.style.transform = `translate3d(${cursorInterp.ringX}px, ${cursorInterp.ringY}px, 0)`;
