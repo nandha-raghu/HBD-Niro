@@ -1,10 +1,11 @@
 .timeline-viewport {
+    position: relative;
     background: radial-gradient(circle at 50% 50%, rgba(10, 15, 36, 0.5) 0%, var(--color-bg-secondary) 100%);
     padding: var(--space-xxl) 0;
-    position: relative;
+    overflow: hidden;
 }
 
-/* Twinkling Star Field Backdrop */
+/* Twinkling Space Stars Layer */
 .timeline-viewport::before {
     content: '';
     position: absolute;
@@ -15,13 +16,13 @@
         radial-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1) 2px, transparent 40px);
     background-size: 550px 550px, 350px 350px, 250px 250px;
     background-position: 0 0, 40px 60px, 130px 270px;
-    opacity: 0.12;
+    opacity: 0.15;
     animation: timelineStarTwinkle 15s linear infinite;
     pointer-events: none;
     z-index: 1;
 }
 
-/* Slow, Emotional shooting stars */
+/* Cinematic Shooting Star Layer */
 .timeline-viewport::after {
     content: '';
     position: absolute;
@@ -29,10 +30,10 @@
     left: -15%;
     width: 150px;
     height: 1.5px;
-    background: linear-gradient(90deg, rgba(var(--color-gold-rgb), 0.75), transparent);
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.75), transparent);
     transform: rotate(-25deg);
     opacity: 0;
-    animation: timelineShootingStar 20s ease-in-out infinite;
+    animation: timelineShootingStar 18s ease-in-out infinite;
     pointer-events: none;
     z-index: 2;
     will-change: transform, opacity;
@@ -40,7 +41,7 @@
 
 @keyframes timelineStarTwinkle {
     0% { opacity: 0.08; }
-    50% { opacity: 0.22; }
+    50% { opacity: 0.25; }
     100% { opacity: 0.08; }
 }
 
@@ -53,6 +54,8 @@
 
 .timeline-header {
     margin-bottom: var(--space-xl);
+    z-index: 10;
+    position: relative;
 }
 
 .section-subtitle {
@@ -67,6 +70,7 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: var(--space-md) 0;
+    z-index: 10;
 }
 
 .timeline-axis-line {
@@ -88,6 +92,7 @@
     background: var(--grad-gold-rose);
     transform-origin: top;
     transform: scaleY(0);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.6); /* Soft golden axis glow */
     will-change: transform;
 }
 
@@ -125,7 +130,7 @@
 .timeline-item.is-active .timeline-marker {
     transform: translate(-50%, -50%) scale(1.4);
     border-color: var(--color-rose-gold);
-    box-shadow: 0 0 15px rgba(var(--color-rose-gold-rgb), 0.8), inset 0 0 4px rgba(var(--color-rose-gold-rgb), 0.5);
+    box-shadow: 0 0 15px rgba(255, 95, 138, 0.8), inset 0 0 4px rgba(255, 95, 138, 0.5);
     background-color: var(--color-rose-gold);
 }
 

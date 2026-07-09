@@ -1,20 +1,41 @@
 .story-viewport {
-    background: radial-gradient(circle at 10% 25%, rgba(var(--color-gold-rgb), 0.045) 0%, var(--color-bg) 60%),
-                radial-gradient(circle at 90% 75%, rgba(var(--color-rose-gold-rgb), 0.02) 0%, var(--color-bg) 75%);
-    padding: var(--space-xxl) 0;
     position: relative;
+    background: radial-gradient(circle at 10% 25%, rgba(212, 175, 55, 0.05) 0%, var(--color-bg) 65%),
+                radial-gradient(circle at 90% 75%, rgba(255, 95, 138, 0.02) 0%, var(--color-bg) 75%);
+    padding: var(--space-xxl) 0;
+    overflow: hidden;
 }
 
-/* Cinematic Golden Light Rays Overlay */
+/* Moving Amber Horizon Light */
 .story-viewport::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(45deg, rgba(var(--color-gold-rgb), 0.006) 0px, rgba(var(--color-gold-rgb), 0.006) 40px, transparent 40px, transparent 80px);
+    background: repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.006) 0px, rgba(212, 175, 55, 0.006) 40px, transparent 40px, transparent 80px);
     opacity: 0.7;
     mix-blend-mode: overlay;
     pointer-events: none;
     z-index: 1;
+}
+
+/* Floating Amber dust cluster */
+.story-viewport::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.035) 0%, transparent 60%);
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 1;
+    animation: storyGradientShift 14s ease-in-out infinite alternate;
+}
+
+@keyframes storyGradientShift {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(20px, 30px, 0) scale(1.05); }
 }
 
 .story-container {
@@ -51,6 +72,7 @@
     max-width: 460px;
     transition: transform 1.2s var(--ease-out-expo), box-shadow 1.2s var(--ease-out-expo);
     will-change: transform;
+    z-index: 5;
 }
 
 .media-frame-inner {
@@ -82,7 +104,7 @@
     position: absolute;
     bottom: calc(-1 * var(--space-md));
     right: calc(-1 * var(--space-sm));
-    z-index: 5;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     gap: 2px;

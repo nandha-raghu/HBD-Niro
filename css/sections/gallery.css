@@ -1,12 +1,31 @@
 .gallery-viewport {
+    position: relative;
     background: radial-gradient(ellipse at center, rgba(5, 5, 5, 0) 25%, rgba(0, 0, 0, 0.98) 100%),
-                radial-gradient(circle at 50% 35%, rgba(var(--color-gold-rgb), 0.035) 0%, var(--color-bg) 70%);
+                radial-gradient(circle at 50% 35%, rgba(212, 175, 55, 0.035) 0%, var(--color-bg) 70%);
     padding: var(--space-xxl) 0;
     box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.95);
+    overflow: hidden;
+}
+
+/* Fine lighting spotlight cone overlay */
+.gallery-viewport::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 600px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.015) 0%, rgba(0, 0, 0, 0) 80%);
+    transform: translateX(-50%);
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .gallery-header {
     margin-bottom: var(--space-xl);
+    z-index: 10;
+    position: relative;
 }
 
 .gallery-grid {
@@ -14,6 +33,8 @@
     grid-template-columns: repeat(12, 1fr);
     gap: var(--space-md);
     width: 100%;
+    z-index: 10;
+    position: relative;
 }
 
 .gallery-item {

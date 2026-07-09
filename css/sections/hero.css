@@ -2,25 +2,48 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background: radial-gradient(circle at 50% 30%, #080f26 0%, var(--color-bg) 85%);
+    background: radial-gradient(circle at 50% 30%, #040817 0%, #050505 85%);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
+/* Twinkling Star Field Layer in Hero Background */
+.hero-viewport::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1) 1px, transparent 30px),
+        radial-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.05) 1.5px, transparent 40px);
+    background-size: 400px 400px, 300px 300px;
+    background-position: 0 0, 150px 150px;
+    opacity: 0.12;
+    animation: heroStarsTwinkle 12s linear infinite;
+    pointer-events: none;
+    will-change: opacity;
+    z-index: 1;
+}
+
+@keyframes heroStarsTwinkle {
+    0% { opacity: 0.08; }
+    50% { opacity: 0.20; }
+    100% { opacity: 0.08; }
+}
+
 #hero-glow {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(var(--color-gold-rgb), 0.14) 0%, rgba(var(--color-rose-gold-rgb), 0.04) 40%, transparent 70%);
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.13) 0%, rgba(255, 95, 138, 0.03) 40%, rgba(8, 15, 36, 0) 70%);
     transform: translate(-50%, -50%);
-    filter: blur(80px);
+    filter: blur(90px);
     pointer-events: none;
     z-index: var(--z-ambient);
-    opacity: 0.85;
+    opacity: 0.9;
     mix-blend-mode: screen;
     will-change: transform;
 }
@@ -66,15 +89,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999; /* Maintain high depth while floating */
-    will-change: transform, opacity;
+    transition: transform 0.8s var(--ease-out-expo);
+    z-index: var(--z-header);
+    will-change: transform;
 }
 
 .hero-heart-destination.is-loader-state {
-    z-index: 99999; /* Sit on top of preloader background */
+    z-index: 99999;
 }
 
-/* Center-locked heartbeat pulse used during preloading */
 .hero-heart-destination.is-beating {
     animation: cinematicHeartbeat 1.4s var(--ease-heartbeat) infinite;
 }
@@ -98,12 +121,12 @@
     height: 100%;
     display: block;
     transform-origin: center;
-    filter: drop-shadow(0 0 20px rgba(var(--color-rose-gold-rgb), 0.4));
+    filter: drop-shadow(0 0 20px rgba(255, 95, 138, 0.4));
 }
 
-
-
-
+.hero-heart-destination.has-landed {
+    animation: floatingAmbientHeart 4s ease-in-out infinite alternate;
+}
 
 @keyframes floatingAmbientHeart {
     0% { transform: translateY(0); }
@@ -139,7 +162,6 @@
     letter-spacing: 0.05em;
 }
 
-/* Force text-clip directly on the split-char spans to prevent transparent rendering bugs */
 .hero-title .line-large .split-char,
 .hero-title .line-large .char {
     background: var(--grad-gold-rose);
@@ -207,6 +229,7 @@
     text-transform: uppercase;
     letter-spacing: var(--letter-spacing-wide);
 }
+
 /* --- SHORT SCREEN PORTABILITY TUNING --- */
 @media (max-height: 750px) {
     .hero-container {
@@ -217,47 +240,6 @@
     }
     
     .hero-heart-destination {
-    position: relative;
-    width: 80px;
-    height: 72px;
-    margin: var(--space-md) auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999; /* Maintain high depth while floating */
-    will-change: transform, opacity;
-}
-
-.hero-heart-destination.is-loader-state {
-    z-index: 99999; /* Sit on top of preloader background */
-}
-
-/* Center-locked heartbeat pulse used during preloading */
-.hero-heart-destination.is-beating {
-    animation: cinematicHeartbeat 1.4s var(--ease-heartbeat) infinite;
-}
-
-@keyframes cinematicHeartbeat {
-    0% { transform: scale(1); }
-    14% { transform: scale(1.15); }
-    28% { transform: scale(1.05); }
-    42% { transform: scale(1.25); }
-    70% { transform: scale(1); }
-    100% { transform: scale(1); }
-}
-
-.interactive-heart-inner {
-    width: 100%;
-    height: 100%;
-}
-
-.interactive-heart {
-    width: 100%;
-    height: 100%;
-    display: block;
-    transform-origin: center;
-    filter: drop-shadow(0 0 20px rgba(var(--color-rose-gold-rgb), 0.4));
-}
-
-
+        margin: var(--space-xs) auto !important;
+    }
 }

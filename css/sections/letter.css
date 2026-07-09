@@ -1,43 +1,65 @@
 .letter-viewport {
     background: radial-gradient(circle at 50% 10%, rgba(138, 122, 95, 0.08) 0%, var(--color-bg-secondary) 85%);
     padding: var(--space-xxl) 0;
-    overflow: visible !important;
+    overflow: visible !important; /* Allow letters to slide up smoothly */
     position: relative;
 }
 
-/* Firefly sparkles floating behind letter paper */
+/* Slowly flickering candlelight overlay */
 .letter-viewport::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image: 
-        radial-gradient(rgba(var(--color-gold-rgb), 0.45) 1px, transparent 8px),
-        radial-gradient(rgba(var(--color-rose-gold-rgb), 0.35) 1.5px, transparent 12px);
+        radial-gradient(rgba(212, 175, 55, 0.45) 1px, transparent 8px),
+        radial-gradient(rgba(255, 95, 138, 0.3) 1.5px, transparent 12px);
     background-size: 160px 180px, 220px 240px;
     background-position: 10px 40px, 120px 130px;
     opacity: 0.22;
-    animation: fireflySparkDrift 18s ease-in-out infinite alternate;
+    animation: letterFireflyDrift 18s ease-in-out infinite alternate;
     pointer-events: none;
     z-index: 1;
 }
 
-@keyframes fireflySparkDrift {
+/* Delicate Candlelight Flicker Glow Mask */
+.letter-viewport::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.02) 0%, transparent 60%);
+    animation: candleFlameFlicker 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+    will-change: opacity;
+}
+
+@keyframes letterFireflyDrift {
     0% { transform: translate3d(0, 0, 0); opacity: 0.15; }
     50% { transform: translate3d(12px, -18px, 0); opacity: 0.3; }
     100% { transform: translate3d(-8px, 12px, 0); opacity: 0.15; }
 }
 
+@keyframes candleFlameFlicker {
+    0% { opacity: 0.5; }
+    30% { opacity: 0.8; }
+    60% { opacity: 0.4; }
+    100% { opacity: 0.9; }
+}
+
 .letter-header {
     margin-bottom: var(--space-xl);
+    z-index: 10;
+    position: relative;
 }
 
 .envelope-arena {
     position: relative;
     width: 100%;
     max-width: 500px;
-    height: 480px; /* Increased height to make paper taller */
-    margin: 180px auto 50px auto; /* Comfortable vertical spacing */
+    height: 480px;
+    margin: 180px auto 50px auto;
     perspective: 1800px;
+    z-index: 10;
 }
 
 .envelope-wrapper {
@@ -105,8 +127,15 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: transform 1.2s var(--ease-in-out-expo), z-index 0.3s linear 0.4s;
     z-index: 2;
-    overflow-y: auto;\n    -webkit-font-smoothing: subpixel-antialiased !important;\n    backface-visibility: hidden;
+    overflow-y: auto;
     border-radius: 2px;
+    
+    /* VECTOR FONT SHARPENING CONTROLS */
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    -moz-osx-font-smoothing: auto !important;
+    font-smooth: always !important;
+    backface-visibility: hidden;
+    transform: translate3d(0,0,0);
 }
 
 .letter-paper-content {
@@ -211,13 +240,8 @@
 
 @media (max-width: 600px) {
     .envelope-arena {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    height: 480px; /* Increased height to make paper taller */
-    margin: 180px auto 50px auto; /* Comfortable vertical spacing */
-    perspective: 1800px;
-}
+        height: 280px;
+    }
     
     .letter-paper-content {
         padding: var(--space-xs);

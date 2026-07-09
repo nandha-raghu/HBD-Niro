@@ -1,6 +1,6 @@
 .finale-viewport {
     position: relative;
-    background: radial-gradient(circle at 50% 115%, rgba(var(--color-gold-rgb), 0.14) 0%, rgba(var(--color-rose-gold-rgb), 0.08) 35%, rgba(10, 15, 36, 0.18) 65%, var(--color-bg) 100%);
+    background: radial-gradient(circle at 50% 115%, rgba(212, 175, 55, 0.15) 0%, rgba(255, 95, 138, 0.08) 35%, rgba(10, 15, 36, 0.2) 65%, var(--color-bg) 100%);
     min-height: 100vh;
     padding: var(--space-xxl) 0;
     display: flex;
@@ -10,33 +10,47 @@
     text-align: center;
 }
 
-/* Giant waving cosmic aurora rise */
+/* Waving celebrate aura flare backdrop layer */
 .finale-viewport::before {
     content: '';
     position: absolute;
     bottom: -60px;
     left: -15%;
     width: 130%;
-    height: 450px;
-    background: radial-gradient(ellipse at bottom, rgba(var(--color-gold-rgb), 0.07) 0%, rgba(var(--color-rose-gold-rgb), 0.035) 45%, transparent 75%);
+    height: 480px;
+    background: radial-gradient(ellipse at bottom, rgba(212, 175, 55, 0.08) 0%, rgba(255, 95, 138, 0.04) 45%, transparent 75%);
     filter: blur(65px);
     transform-origin: bottom center;
-    animation: auroraWaveAnimation 12s ease-in-out infinite alternate;
+    animation: auroraCelebrationWave 14s ease-in-out infinite alternate;
     pointer-events: none;
     z-index: 1;
 }
 
-@keyframes auroraWaveAnimation {
-    0% { transform: scaleY(0.85) rotate(-1.5deg); opacity: 0.65; }
+/* Floating sparkle sparkles overlay */
+.finale-viewport::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 15px),
+        radial-gradient(rgba(212, 175, 55, 0.25) 1.5px, transparent 20px);
+    background-size: 140px 140px, 200px 200px;
+    background-position: 40px 10px, 80px 160px;
+    opacity: 0.3;
+    animation: celebrateSparklesShift 15s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+}
+
+@keyframes auroraCelebrationWave {
+    0% { transform: scaleY(0.85) rotate(-1.5deg); opacity: 0.6; }
     100% { transform: scaleY(1.15) rotate(1.5deg); opacity: 0.95; }
 }
 
-.finale-glow {
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.9;
-    background: radial-gradient(circle at center, rgba(var(--color-rose-gold-rgb), 0.08) 0%, rgba(var(--color-bg-rgb), 0) 70%);
+@keyframes celebrateSparklesShift {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(20px, -40px, 0); }
 }
 
 .finale-container {
@@ -46,6 +60,7 @@
     justify-content: center;
     gap: var(--space-lg);
     z-index: 10;
+    position: relative;
 }
 
 .finale-heart-display {
@@ -94,7 +109,6 @@
     color: var(--color-white);
 }
 
-/* Force text-clip directly on the closing split spans */
 .finale-headline .split-char,
 .finale-headline .char {
     background: var(--grad-gold-rose);
