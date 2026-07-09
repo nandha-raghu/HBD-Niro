@@ -100,3 +100,53 @@
         display: none;
     }
 }
+/* --- LUXURY FLOATING CHAPTER NAVIGATION PROGRESS DOTS --- */
+.side-navigation {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 9999;
+    mix-blend-mode: difference; /* Dynamically inverts colors based on underlying media pixels */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s var(--ease-out-expo), visibility 1.5s var(--ease-out-expo);
+}
+
+.side-navigation.is-visible {
+    opacity: 0.85;
+    visibility: visible;
+}
+
+.nav-dot {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    border: 1px solid transparent;
+    padding: 0;
+    transition: transform 0.6s var(--ease-out-expo), background-color 0.6s var(--ease-out-expo), border-color 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
+    cursor: pointer;
+}
+
+.nav-dot:hover {
+    transform: scale(1.4);
+    background-color: #FFFFFF;
+}
+
+.nav-dot.active {
+    transform: scale(1.6);
+    background-color: #FF5F8A; /* Soft rose gold center */
+    border-color: #D4AF37;     # Gold halo ring
+    box-shadow: 0 0 10px rgba(255, 95, 138, 0.6);
+}
+
+/* Hide on mobile devices to preserve narrow reading spaces */
+@media (max-width: 768px) {
+    .side-navigation {
+        display: none !important;
+    }
+}
