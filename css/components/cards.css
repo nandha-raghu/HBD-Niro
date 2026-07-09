@@ -44,7 +44,7 @@
 .card-media {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3; /* Taller, elegant aspect ratio for vertical and square portrait photos */
+    aspect-ratio: 1 / 1; /* Taller, elegant aspect ratio for vertical and square portrait photos */
     overflow: hidden;
     background-color: var(--color-bg-secondary);
     border: 1px solid rgba(255, 255, 255, 0.03);
