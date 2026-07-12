@@ -2,6 +2,7 @@ import { CONFIG } from '../core/config.js';
 import { STATE } from '../core/state.js';
 import { DOM } from '../core/dom.js';
 import { ParticleEngine } from '../core/particleEngine.js';
+import { playScore } from './music.js';
 
 let loaderParticles = null;
 
@@ -9,9 +10,67 @@ export function initPreload() {
     const canvas = DOM.queryLive('#loader-particle-canvas');
     if (DOM.loaderScreen && canvas) {
         loaderParticles = new ParticleEngine(canvas, 'loader');
-        loaderParticles.start();
     }
-    beginPreloadingProgress();
+    
+    // Intercept loading progress: Initialize the lock screen validation listeners first!
+    initPasswordScreen();
+}
+
+/**
+ * Handle password verification and input focus bindings
+ */
+function initPasswordScreen() {
+    const overlay = document.querySelector('.password-overlay');
+    const input = document.querySelector('.password-input');
+    const submitBtn = document.querySelector('#password-submit');
+    const errorMsg = document.querySelector('#password-error');
+    const card = document.querySelector('.password-card');
+
+    if (!overlay || !input || !submitBtn) return;
+
+    // Auto-focus input box for friendly UX
+    setTimeout(() => input.focus(), 500);
+
+    const checkPassword = () => {
+        const rawVal = input.value.trim().toLowerCase();
+        
+        // Accepted answers
+        if (rawVal === "niro" || rawVal === "nirosha" || rawVal === "wife") {
+            // Correct answerEntered!
+            overlay.classList.add('is-unlocked');
+            
+            // 1. Play background song instantly (Allowed because of active click gesture!)
+            playScore();
+            
+            // 2. Start preloader canvas particles
+            if (loaderParticles) {
+                loaderParticles.start();
+            }
+            
+            // 3. Initiate progressive loading thoughts bar
+            beginPreloadingProgress();
+        } else {
+            // Incorrect answer: Trigger 3D shake animation on card using GSAP
+            errorMsg.classList.add('is-visible');
+            input.value = ""; // Clear box
+            
+            gsap.fromTo(card, 
+                { x: -10 },
+                { x: 10, repeat: 5, yoyo: true, duration: 0.05, onComplete: () => {
+                    gsap.set(card, { x: 0 }); // Reset alignment
+                }}
+            );
+        }
+    };
+
+    // Bind triggers
+    submitBtn.addEventListener('click', checkPassword, { passive: true });
+    
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    }, { passive: true });
 }
 
 function beginPreloadingProgress() {
@@ -65,12 +124,10 @@ function beginPreloadingProgress() {
 function handlePreloadComplete() {
     const fadeTimeline = gsap.timeline({
         onComplete: () => {
-            // Trigger preloader complete to initiate flight curve
             window.dispatchEvent(new CustomEvent('preload:complete'));
         }
     });
 
-    // 1. Fade out the progress bar screen (Step 1)
     if (DOM.msgStep1) {
         fadeTimeline.to(DOM.msgStep1, {
             opacity: 0,
@@ -82,7 +139,6 @@ function handlePreloadComplete() {
 
     const proseEl = DOM.msgStep2?.querySelector('.heartfelt-prose');
     if (DOM.msgStep2 && proseEl) {
-        // Position elements for relative transforms
         gsap.set(proseEl, { y: 15, opacity: 0 });
         DOM.msgStep2.classList.add('active');
 
@@ -102,7 +158,7 @@ function handlePreloadComplete() {
             y: -10,
             duration: 0.8,
             ease: "power2.in"
-        }, "+=1.8"); // Reading hold
+        }, "+=3.8");
 
         // --- CLIMAX MOVEMENT 2: The Woman ---
         fadeTimeline.to(proseEl, {
@@ -120,7 +176,7 @@ function handlePreloadComplete() {
             y: -10,
             duration: 0.8,
             ease: "power2.in"
-        }, "+=1.8");
+        }, "+=3.8");
 
         // --- CLIMAX MOVEMENT 3: The Love ---
         fadeTimeline.to(proseEl, {
@@ -138,7 +194,7 @@ function handlePreloadComplete() {
             y: -10,
             duration: 1.0,
             ease: "power2.in"
-        }, "+=2.2");
+        }, "+=4.2");
     }
 }
 
