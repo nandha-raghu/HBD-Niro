@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100vh;\n    height: 100svh; /* Locked mobile safe height */
     background-color: var(--color-bg);
     z-index: var(--z-loader);
     display: flex;

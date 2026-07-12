@@ -207,6 +207,11 @@ function bindQuizEvents() {
         // Play the score music instantly under user gesture!
         playScore();
 
+        // FORCE VIEWPORT RESET: Snap browser scroll to absolute top, clearing keyboard focus shifts!
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
         // Hold success screen for exactly 3.2s, then transition into preloader
         setTimeout(() => {
             if (overlay) {
